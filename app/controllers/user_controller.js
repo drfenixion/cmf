@@ -172,7 +172,9 @@ module.exports = {
 	      });
 
 	      //set index array as tour_id
-	      var sorted_tours = [{short_name : 'Тур ещё не выбран'}];
+	      var sorted_tours = [
+	      	{short_name : 'Тур ещё не выбран'}
+	      ];
 	      for(index in tours){
 	      	sorted_tours[tours[index].id] = tours[index];
 	      }
@@ -189,7 +191,7 @@ module.exports = {
 	})
 	.catch(function(error){
 		req.flash("info", "Ошибка базы данных!");
-	    res.render('admin/index');		
+	    res.redirect('admin');		
 	});
 
   }

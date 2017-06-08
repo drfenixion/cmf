@@ -12,7 +12,7 @@ module.exports = function (orm, db) {
 	    height       : { type : "integer", size: 4 , required: true },
 	    sex          : { type : "integer", size: 2 , required: true },
 	    age          : { type : "integer", size: 2 , required: true },
-	    tour_id      : { type : "integer", size: 2 },
+	    tour_id      : { type : "integer", size: 2 , defaultValue: 0 },
 	    admin        : { type : "integer", size: 2 , defaultValue: 0 },
 	    approved     : { type : "integer", size: 2 , defaultValue: 0 },
 	    about_myself : { type : "text"},
