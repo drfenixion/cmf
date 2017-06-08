@@ -1,0 +1,41 @@
+extends ../_bootstrap
+append styles
+	// Custom styles for this template	
+block body
+	.container.contaner_auth_form
+		form(method='POST' action='/registration').form-signin 
+			h2.form-signin-heading Регистрация
+			label.sr-only(for='input_user_name') Имя пользователя
+			input#input_user_name.form-control(value=form.user_name, name='user_name', type='text', placeholder='Имя пользователя', required='', autofocus='')
+
+			label.sr-only(for='input_password') Пароль
+			input#input_password.form-control(value=form.password, name='password', type='password', placeholder='Пароль', required='')
+
+			label.sr-only(for='input_first_name') Имя
+			input#input_first_name.form-control(value=form.first_name, name='first_name', type='text', placeholder='Имя', required='')
+
+			label.sr-only(for='input_second_name') Фамилия
+			input#input_second_name.form-control(value=form.second_name, name='second_name', type='text', placeholder='Фамилия', required='')
+
+			label.sr-only(for='input_height') Рост
+			input#input_height.form-control(value=form.height, name='height', type='number', min="100", max="300", placeholder='Рост', required='')
+
+			label.sr-only(for='input_sex1') Мужской
+			input#input_sex1.form-control(name='sex', type='radio', value='1',
+			 checked=form.sex=='1')
+			| Мужской
+			label.sr-only(for='input_sex2') Женский
+			input#input_sex2.form-control(name='sex', type='radio', value='2',
+			 checked=form.sex=='2')
+			| Женский
+
+			label.sr-only(for='input_age') Год рождения
+			input#input_age.form-control(value=form.age, name='age', type='number', min="1900", max="1999" placeholder='Год рождения', required='')
+
+			label.sr-only(for='input_about_myself') О себе
+			textarea#input_about_myself.form-control(name='about_myself', placeholder='О себе')=form.about_myself
+
+			button.btn.btn-lg.btn-primary.btn-block(type='submit') Зарегистрироваться
+			|
+			a(href='/login') Есть аккаунт? Войдите
+			!= messages()

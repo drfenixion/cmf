@@ -1,0 +1,42 @@
+extends ../_bootstrap
+append styles
+	// Bootstrap theme
+	+bootswatch("cerulean")
+	// Custom styles for this template
+block body
+	// Fixed navbar
+	nav.navbar.navbar-default.navbar-fixed-top
+		.container
+			.navbar-header
+				button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#navbar', aria-expanded='false', aria-controls='navbar')
+					span.sr-only Toggle navigation
+					span.icon-bar
+					span.icon-bar
+					span.icon-bar
+				if !authenticated
+					a.navbar-brand(href='/login', class='solid_top_link') Войти
+					a.navbar-brand(href='/registration', class='solid_top_link') Подать заявку
+				else
+					a.navbar-brand() Приветсвуем вас, #{user.user_name}.
+
+					a.navbar-brand(href='/logout', class='solid_top_link') Выход
+
+			#navbar.navbar-collapse.collapse
+					
+	.container.theme-showcase(role='main')
+		.jumbotron
+			h1 Лунная программа ЦУП
+
+			if user.approved
+				p Наши туры
+				form(method='POST' action='/tours').form-signin 
+					
+						each val in tours
+							input.form-control(name='tour_id', type='radio', value=val.id, checked=user.tour_id==val.id) 
+							span.tour_title= val.name
+							br
+						button.btn-success.btn.btn-lg.btn-primary.btn-block.order_button(type='submit') Заказать	
+						|
+						!= messages()
+			else
+				p Наши сотрудники проверяют подойдёт ли вам скафандр, как только они в этом убедяться вы сможете выбрать тур.

@@ -1,0 +1,16 @@
+extends ../_bootstrap
+append styles
+	// Custom styles for this template	
+block body
+	.container.contaner_auth_form
+		form(method='POST' action='/login').form-signin 
+			h2.form-signin-heading Вход
+			label.sr-only(for='inputEmail') Имя пользователя
+			input#inputEmail.form-control(name='user_name', type='text', placeholder='Имя пользователя', required='', autofocus='')
+			label.sr-only(for='inputPassword') Пароль
+			input#inputPassword.form-control(name='password', type='password', placeholder='Пароль', required='')
+
+			button.btn.btn-lg.btn-primary.btn-block(type='submit') Войти
+			| 
+			a(href='/registration') Заполнить заявку и зарегистрироваться
+			!= messages()

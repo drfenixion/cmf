@@ -1,0 +1,63 @@
+.contaner_auth_form{
+	max-width: 300px;
+}
+.form-signin input{
+	margin-bottom: 10px;
+}
+.form-signin button{
+	margin-bottom: 10px;
+}
+.form-signin textarea{
+	margin-bottom: 10px;
+}
+.form-signin input[type=radio]{
+	max-width: 40px;
+	display: inline;
+	margin-right: 5px;
+	margin-left: 5px;
+	box-shadow: none !important;
+}
+form input[type=checkbox]{
+	max-width: 40px;
+	display: inline;
+	margin-right: 5px;
+	margin-left: 5px;
+	box-shadow: none !important;
+}
+.table-hover tr td{
+	vertical-align: middle !important;
+}
+.tour_wrapper{
+	margin-top: 40px;
+}
+span.tour_title{
+	font-size: 2.5rem;
+	vertical-align: 30%;
+}
+li.tour_title{
+	font-size: 2.2rem;
+	vertical-align: 30%;
+	margin-bottom: 10px;
+}
+.order_button{
+	margin-top: 15px;
+}
+#messages li{
+	font-size: 1.4rem;
+	font-weight: bold;
+}
+.solid_top_link{
+	font-weight: bold;
+}
+
+.admin_table select{
+	width: auto !important;
+	display: inline !important;
+	margin-right: 25px;
+}
+.admin_table button{
+	width: auto !important;
+	display: inline !important;
+	margin-right: 25px;
+	margin-top: 0px !important;
+}

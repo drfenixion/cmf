@@ -1,0 +1,73 @@
+extends ../_bootstrap
+append styles
+	// Bootstrap theme
+	+bootswatch("cerulean")
+	// Custom styles for this template
+block body
+	// Fixed navbar
+	nav.navbar.navbar-default.navbar-fixed-top
+		.container
+			.navbar-header
+				button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#navbar', aria-expanded='false', aria-controls='navbar')
+					span.sr-only Toggle navigation
+					span.icon-bar
+					span.icon-bar
+					span.icon-bar
+				a.navbar-brand(href='/logout', class='solid_top_link') Выход
+				a.navbar-brand(href='/tours', class='solid_top_link') Туры
+
+			#navbar.navbar-collapse.collapse
+					
+	.container.theme-showcase(role='main')
+		.jumbotron
+			h2 Пользователи
+			!= messages()
+
+			form(method='POST' action='/admin') 
+				div.form-group.admin_table
+					span Подтверждённые: 			
+					select(name='approved').form-control
+						option(value='0' selected=approved==0) Нет
+						option(value='1' selected=approved==1) Да
+											
+					span Тур: 			
+					select(name='tour_id').form-control
+						option(value='0' selected=tour_id==0) Тур ещё не выбран
+						each val in tours
+							option(value=val.id selected=val.id==tour_id)
+								= val.short_name
+
+					button.btn.btn-primary.btn-block(type='submit') Отфильтровать
+					button.btn.btn-primary.btn-block(type='submit' name='button_approve' value='1') Одобрить отмеченные
+
+				table.table.table-hover
+					tr
+						th Выбрать
+						th Id
+						th Имя пользователя
+						th Имя
+						th Фамилия
+						th Пол
+						th Год рождения
+						th Подтверждён?
+						th Админ?
+						th Тур
+						th О себе
+					
+					each val in users
+						tr
+							td 
+								input.form-control(name='checked_users[]', type='checkbox', value=val.id)
+							td: = val.id
+							td: = val.user_name 
+							td: = val.first_name
+							td: = val.second_name 
+							td: = val.sex 
+							td: = val.age
+							td: = val.approved
+							td: = val.admin
+							td: = sorted_tours[val.tour_id].short_name
+							td: = val.about_myself
+						
+					
+
