@@ -1,23 +1,23 @@
-var orm      = require('orm');
+var orm = require('orm');
 var settings = require('../../config/settings');
 
 var connection = null;
 
 function setup(db, cb) {
-  require('./tour')(orm, db);
-  require('./user')(orm, db);
+    require('./tour')(orm, db);
+    require('./user')(orm, db);
 
-  return cb(null, db);
+    return cb(null, db);
 }
 
-module.exports = function (cb) {
-  if (connection) return cb(null, connection);
-    
-  orm.connect(settings.database, function (err, db) {
-    if (err) return cb(err);
+module.exports = function(cb) {
+    if (connection) return cb(null, connection);
 
-    connection = db;
-    db.settings.set('instance.returnAllErrors', true);
-    setup(db, cb);
-  });
+    orm.connect(settings.database, function(err, db) {
+        if (err) return cb(err);
+
+        connection = db;
+        db.settings.set('instance.returnAllErrors', true);
+        setup(db, cb);
+    });
 };
