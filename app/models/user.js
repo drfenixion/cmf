@@ -18,7 +18,8 @@ module.exports = function (orm, db) {
 	    about_myself : { type : "text"},
 	    created_at   : { type : "date", time: true }
 	}, 
-	{
+	{	
+		cache: false,
 	    hooks: {
 	      beforeValidation: function () {
 	        this.created_at = moment().format('YYYY-MM-DD HH:mm:ss');
