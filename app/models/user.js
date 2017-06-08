@@ -59,5 +59,4 @@ module.exports = function (orm, db) {
 	    }
   	});
 
-  	//User.hasOne('tour', db.models.tour, { required: true, reverse: 'tours', autoFetch: true });
 };
