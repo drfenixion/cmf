@@ -45,6 +45,7 @@ li.tour_title{
 #messages li{
 	font-size: 1.4rem;
 	font-weight: bold;
+	margin-top: 10px;
 }
 .solid_top_link{
 	font-weight: bold;

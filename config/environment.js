@@ -27,7 +27,8 @@ module.exports = function (app) {
         user: settings.database.user,
         password: settings.database.password,
         database: settings.database.database
-      })
+      }),
+      unset: 'destroy'
       
     }));
 

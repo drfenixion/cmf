@@ -32,7 +32,9 @@ module.exports = {
 
       if(encrypt.compareSync(password, item.password)){
         req.session.authenticated = 1;
+        console.log('item',item);
         req.session.user = item;
+        console.log('req.session.user',req.session.user);
 
         if(req.session.user.admin){         
           return res.redirect('admin');
@@ -41,7 +43,7 @@ module.exports = {
 
       }else{
         req.flash("info", "Неправильный логин или пароль");
-    res.render('auth/login');         
+        res.render('auth/login');         
       }
     });
   },
@@ -88,6 +90,8 @@ module.exports = {
   },
   logout: function (req, res, next) {
     req.session.authenticated = 0;
+    req.session.user = null;
+    console.log('logout req.session.user',req.session.user);
     res.redirect('/');    
   }  
 };

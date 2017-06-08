@@ -32,10 +32,14 @@ block body
 				form(method='POST' action='/tours').form-signin 
 					
 						each val in tours
-							input.form-control(name='tour_id', type='radio', value=val.id, checked=user.tour_id==val.id) 
+							if !user.tour_id
+								input.form-control(name='tour_id', type='radio', value=val.id, checked=user.tour_id==val.id )
+							else
+								input.form-control(name='tour_id', type='radio', value=val.id, checked=user.tour_id==val.id, disabled)
 							span.tour_title= val.name
 							br
-						button.btn-success.btn.btn-lg.btn-primary.btn-block.order_button(type='submit') Заказать	
+						if !user.tour_id
+							button.btn-success.btn.btn-lg.btn-primary.btn-block.order_button(type='submit') Заказать	
 						|
 						!= messages()
 			else
