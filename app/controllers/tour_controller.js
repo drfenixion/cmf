@@ -16,4 +16,19 @@ module.exports = {
 	    });	  
     });
   },
+  setTour: function (req, res, next) {      
+    req.models.user.get(req.session.user.id, function (err, item) {
+      item.save({ tour_id: req.body.tour_id}, function (err) {
+        if (Array.isArray(err) && err[0].type === 'validation') {
+          req.flash("info", err[0].msg);
+          res.redirect('tours');
+          return;
+        }
+
+        req.session.user.tour_id = req.body.tour_id;
+        req.flash("info", "Тур заказан!");
+        res.redirect('tours');
+      });
+    });   
+  },
 };
