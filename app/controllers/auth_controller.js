@@ -92,7 +92,6 @@ module.exports = {
     logout: function(req, res, next) {
         req.session.authenticated = 0;
         req.session.user = null;
-        console.log('logout req.session.user', req.session.user);
         res.redirect('/');
     }
 };

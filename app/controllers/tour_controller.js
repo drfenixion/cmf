@@ -7,7 +7,7 @@ module.exports = {
             var items = resultMatches.map(function(m) {
                 return m.serialize();
             });
-            console.log('req.session.user', req.session.user);
+            
             res.render('tours/index', {
                 tours: items,
                 user: req.session.user,
