@@ -8,11 +8,6 @@ block body
 	nav.navbar.navbar-default.navbar-fixed-top
 		.container
 			.navbar-header
-				button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#navbar', aria-expanded='false', aria-controls='navbar')
-					span.sr-only Toggle navigation
-					span.icon-bar
-					span.icon-bar
-					span.icon-bar
 				if !authenticated
 					a.navbar-brand(href='/login', class='solid_top_link') Войти
 					a.navbar-brand(href='/registration', class='solid_top_link') Подать заявку
@@ -20,8 +15,6 @@ block body
 					a.navbar-brand() Приветсвуем вас, #{user.user_name}.
 
 					a.navbar-brand(href='/logout', class='solid_top_link') Выход
-
-			#navbar.navbar-collapse.collapse
 					
 	.container.theme-showcase(role='main')
 		.jumbotron
