@@ -28,3 +28,24 @@ block body
 				each val in tours
 					li.tour_title: = val.name
 
+			.description_button_wrapper
+				button(data-toggle="modal", data-target="#description").btn.btn-primary.btn-lg Прочитать описание приложения
+
+	
+
+	div(tabindex="-1", role="dialog", aria-labelledby="myModalLabel").modal.fade#description
+		div(role="document").modal-dialog
+			.modal-content
+				.modal-header Описание приложения
+				.modal-body
+					p Это приложение является тестовым заданием. Приложение позволяет подавать заявки для полётов на луну, а после их одобрения администратором, выбирать тур. Есть админ панель с фильтрацией пользователей и возможностью их одобрения.
+					
+					p Администратор - логин: admin, пароль: admin.
+					
+					p Подайте заяку (при этом будет создан пользователь), а затем войдите под админом и одобрите её. После этого вы сможете выбрать тур тем кем подавали заявку.
+					
+					p Используемые технологии: Node.js, Express, MySQL, Redis (сессии).
+					P Код проекта - 
+						a(href='https://github.com/drfenixion/cmf', target='_blank') https://github.com/drfenixion/cmf
+				.modal-footer
+					button(type="button", data-dismiss="modal").btn.btn-default Закрыть
