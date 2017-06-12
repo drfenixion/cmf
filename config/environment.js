@@ -3,8 +3,19 @@ var express = require('express');
 var settings = require('./settings');
 var models = require('../app/models/');
 var session = require('express-session');
-var SessionStore = require('express-mysql-session');
 var cookieParser = require('cookie-parser')
+
+var redis = require("redis"),
+    client = redis.createClient();
+
+var options = {
+    client: client,
+    host: settings.redis.host,
+    port: settings.redis.port,
+    ttl: 260
+}
+var RedisStore = require('connect-redis')(session);
+var redisStore = new RedisStore(options);
 
 module.exports = function(app) {
     app.configure(function() {
@@ -24,12 +35,7 @@ module.exports = function(app) {
                 maxAge: new Date(Date.now() + 3600000)
             },
 
-            store: new SessionStore({
-                host: settings.database.host,
-                user: settings.database.user,
-                password: settings.database.password,
-                database: settings.database.database
-            }),
+            store: redisStore,
             unset: 'destroy'
 
         }));
@@ -43,17 +49,22 @@ module.exports = function(app) {
         app.use(express.methodOverride());
 
         app.use(function(req, res, next) {
-                models(function(err, db) {
-                    if (err) return next(err);
+            models(function(err, db) {
+                if (err) return next(err);
 
-                    req.models = db.models;
-                    req.db = db;
+                req.models = db.models;
+                req.db = db;
 
-                    return next();
-                });
-            }),
+                return next();
+            });
+        }),
 
-            app.use(app.router);
+        app.use(function(req, res, next) {
+            req.sessionStore = redisStore;
+            return next();
+        }),
+
+        app.use(app.router);
 
         app.set('view engine', 'pug');
         app.set('views', __dirname + '/../app/views');

@@ -31,10 +31,8 @@ module.exports = {
                 var item = items[0];
 
                 if (encrypt.compareSync(password, item.password)) {
-                    req.session.authenticated = 1;
-                    console.log('item', item);
+                    req.session.authenticated = 1;                    
                     req.session.user = item;
-                    console.log('req.session.user', req.session.user);
 
                     if (req.session.user.admin) {
                         return res.redirect('admin');

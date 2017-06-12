@@ -12,6 +12,10 @@ var settings = {
         database: "cmf",
         user: "root",
         password: "159753"
+    },
+    redis: {
+        host: 'localhost',
+        port: '6379',
     }
 };
 
