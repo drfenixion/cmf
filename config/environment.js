@@ -32,7 +32,8 @@ module.exports = function(app) {
             resave: false,
             saveUninitialized: true,
             cookie: {
-                maxAge: new Date(Date.now() + 3600000)
+                //maxAge: new Date(Date.now() + 3600000),
+                expires: new Date(Date.now() + 3600000)
             },
 
             store: redisStore,
